@@ -60,6 +60,14 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+          height: 50,
+          child: Container(
+              color: Colors.deepPurpleAccent,
+              child: Center(
+                child: Text(
+                    'Es aún más raro poder trabajar con flutter yestoy viendo como obtener y presentar las data desde un endpoint de una Api'),
+              ))),
     );
   }
 }
