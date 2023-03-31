@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:test_ellb/widgets/graph_statistic.dart';
+import 'dart:convert' as convert;
 
 import '../widgets/circle.dart';
 
@@ -15,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     final Size size = MediaQuery.of(context).size;
     final double circleOneSize = size.width * 0.9;
     final double circleTwoSize = size.width * 0.6;
+    final Statistic estadisticas;
 
     return Scaffold(
       appBar: AppBar(
@@ -50,11 +54,14 @@ class _HomePageState extends State<HomePage> {
                 )),
             Container(
                 child: Container(
-              child: Stack(children: <Widget>[
-                Center(child: Text('Hola mundillo')),
+              child: Stack(children: const <Widget>[
                 Positioned(
-                    top: 150,
-                    child: Text(' Es raro como se programa en flutter ')),
+                    top: 200,
+                    child: Text('Estadisticas',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 0, 31, 205)))),
+                Statistic(),
               ]),
             ))
           ],
@@ -67,9 +74,60 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Text(
                   'Es aún más raro poder trabajar con flutter yestoy viendo como obtener y presentar las data desde un endpoint de una Api',
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 18),
                 ),
               ))),
     );
   }
+
+  // @override
+  // void initState() {
+  //   final newYearsEve = DateTime.now().toUtc().millisecondsSinceEpoch;
+  //   final now = DateTime.now().toUtc();
+  //   print(newYearsEve);
+  //   print(now);
+  //   _getStatistic();
+  //   super.initState();
+  // }
+
+  // Future _getStatistic() async {
+  //   // This example uses the Google Books API to search for books about http.
+  //   // https://developers.google.com/books/docs/overview
+  //   final endDatetime = DateTime.now().toUtc().millisecondsSinceEpoch;
+  //   final startDatetime = endDatetime - 604800000;
+  //   final end = endDatetime.toString();
+  //   final start = startDatetime.toString();
+  //   print('end: ${end}');
+  //   print('start: ${start}');
+
+  //   final url = Uri.https(
+  //       'api-ws-prod.herokuapp.com',
+  //       '/api/chat/statistics-button-pressed/',
+  //       {'end-time': end, 'start-time': start});
+  //   print(url);
+  //   // Await the http get response, then decode the json-formatted response.
+  //   final response = await http.get(url);
+  //   if (response.statusCode == 200) {
+  //     final jsonResponse =
+  //         convert.jsonDecode(response.body) as Map<String, dynamic>;
+
+  //     final sinAccion = jsonResponse['countConfirmar'] -
+  //         (jsonResponse['countAsistir'] +
+  //             jsonResponse['countAnular'] +
+  //             jsonResponse['countAmbos']);
+  //     final asistir = jsonResponse['countAsistir'];
+  //     final anular = jsonResponse['countAnular'];
+  //     final ambos = jsonResponse['countAmbos'];
+  //     final total = jsonResponse['countConfirmar'];
+
+  //     // countAsistir","countAnular","countAmbos","countConfirmar"
+  //     print("Datos asistir: $asistir");
+  //     print("Datos anula: $anular");
+  //     print("Datos ambos: $ambos");
+  //     print("Datos sin accion: $sinAccion");
+  //     print("Datos Total: $total");
+  //   } else {
+  //     print('Request failed with status: ${response.statusCode}.');
+  //   }
+  // }
 }
