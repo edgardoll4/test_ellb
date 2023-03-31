@@ -12,67 +12,62 @@ class Statistic extends StatelessWidget {
   Widget build(BuildContext context) {
     DataStatistic _datos_statistic = new DataStatistic();
     // final ListStatistic = _datos_statistic._getStatistic();
-    return Center(
-      child: Scaffold(
-        body: FutureBuilder<dynamic>(
-          future: _datos_statistic._getStatistic(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              // print('Datos en snapshot $snapshot');
-              var sinAccion = snapshot.data['countConfirmar'] -
-                  (snapshot.data['countAsistir'] +
-                      snapshot.data['countAnular'] +
-                      snapshot.data['countAmbos']);
+    return FutureBuilder<dynamic>(
+      future: _datos_statistic._getStatistic(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          // print('Datos en snapshot $snapshot');
+          var sinAccion = snapshot.data['countConfirmar'] -
+              (snapshot.data['countAsistir'] +
+                  snapshot.data['countAnular'] +
+                  snapshot.data['countAmbos']);
 
-              var asistir = snapshot.data['countAsistir'];
-              var anular = snapshot.data['countAnular'];
-              var ambos = snapshot.data['countAmbos'];
-              var total = snapshot.data['countConfirmar'];
+          var asistir = snapshot.data['countAsistir'];
+          var anular = snapshot.data['countAnular'];
+          var ambos = snapshot.data['countAmbos'];
+          var total = snapshot.data['countConfirmar'];
 
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Center(
-                      child: Text('Estadisticas.\n',
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontStyle: FontStyle.italic,
-                              color: Color.fromARGB(255, 25, 0, 255)))),
-                  Text(
-                    'countAsistir: $asistir. \n',
-                    style: const TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text('countAnular: $anular. \n',
-                      style: const TextStyle(
-                        fontSize: 18,
-                      )),
-                  Text('countAmbos: $ambos. \n',
-                      style: const TextStyle(
-                        fontSize: 18,
-                      )),
-                  Text('countSinAccion: $sinAccion\n',
-                      style: const TextStyle(
-                        fontSize: 18,
-                      )),
-                  Text('Total de platillas de confirmacion: $total. \n',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          color: Color.fromARGB(200, 10, 100, 15))),
-                ],
-              );
-            } else {
-              return const Text("Sin data");
-            }
-          },
-          initialData: const Center(
-              child: CircularProgressIndicator(
-            color: Color.fromARGB(200, 10, 150, 15),
-          )),
-        ),
-      ),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Center(
+                  child: Text('Estadisticas.\n',
+                      style: TextStyle(
+                          fontSize: 28,
+                          fontStyle: FontStyle.italic,
+                          color: Color.fromARGB(255, 25, 0, 255)))),
+              Text(
+                'countAsistir: $asistir. \n',
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              Text('countAnular: $anular. \n',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  )),
+              Text('countAmbos: $ambos. \n',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  )),
+              Text('countSinAccion: $sinAccion\n',
+                  style: const TextStyle(
+                    fontSize: 18,
+                  )),
+              Text('Total de platillas de confirmacion: $total. \n',
+                  style: const TextStyle(
+                      fontSize: 18, color: Color.fromARGB(200, 10, 100, 15))),
+            ],
+          );
+        } else {
+          return const Text("Sin data");
+        }
+      },
+      initialData: const Center(
+          child: CircularProgressIndicator(
+        color: Color.fromARGB(200, 10, 150, 15),
+      )),
     );
   }
 
