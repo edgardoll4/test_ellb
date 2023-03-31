@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         shadowColor: Color.fromARGB(255, 55, 255, 0),
-        backgroundColor: Color.fromARGB(255, 86, 29, 255),
+        backgroundColor: Color.fromARGB(255, 255, 55, 29),
         title: Text('Mi aplicacion'),
       ),
       body: Container(
@@ -52,18 +52,7 @@ class _HomePageState extends State<HomePage> {
                     Color.fromARGB(231, 255, 228, 20)
                   ],
                 )),
-            Container(
-                child: Container(
-              child: Stack(children: const <Widget>[
-                Positioned(
-                    top: 200,
-                    child: Text('Estadisticas',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromARGB(255, 0, 31, 205)))),
-                Statistic(),
-              ]),
-            ))
+            Statistic(),
           ],
         ),
       ),
