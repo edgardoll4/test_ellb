@@ -31,11 +31,13 @@ class Statistic extends StatelessWidget {
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Center(
-                      child: Text('Estadisticas.\n\n',
+                      child: Text('Estadisticas.\n',
                           style: TextStyle(
                               fontSize: 28,
+                              fontStyle: FontStyle.italic,
                               color: Color.fromARGB(255, 25, 0, 255)))),
                   Text(
                     'countAsistir: $asistir. \n',
@@ -57,8 +59,8 @@ class Statistic extends StatelessWidget {
                       )),
                   Text('Total de platillas de confirmacion: $total. \n',
                       style: const TextStyle(
-                        fontSize: 18,
-                      )),
+                          fontSize: 18,
+                          color: Color.fromARGB(200, 10, 100, 15))),
                 ],
               );
             } else {
