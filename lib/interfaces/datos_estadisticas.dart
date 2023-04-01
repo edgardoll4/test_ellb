@@ -1,12 +1,13 @@
 class EstadisticasBtn {
-  String countAsistir;
-  String countAnular;
-  String countAmbos;
-  String countConfirmar;
-  String templateConfirmar;
+  int countAsistir;
+  int countAnular;
+  int countAmbos;
+  int countConfirmar;
+  int countsinAccion;
+  // int templateConfirmar;
 
   EstadisticasBtn(this.countAsistir, this.countAnular, this.countAmbos,
-      this.countConfirmar, this.templateConfirmar);
+      this.countConfirmar, this.countsinAccion);
 
   // EstadisticasBtn.fromJson(Map<String, dynamic> json) {
   //   countAsistir = json['countAsistir'];

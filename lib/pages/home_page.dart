@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                     Color.fromARGB(231, 255, 228, 20)
                   ],
                 )),
+            // Center(child: Text('Error')),
             Statistic(),
           ],
         ),
@@ -62,8 +63,8 @@ class _HomePageState extends State<HomePage> {
               color: Colors.deepPurpleAccent,
               child: Center(
                 child: Text(
-                  'Es aún más raro poder trabajar con flutter yestoy viendo como obtener y presentar las data desde un endpoint de una Api',
-                  style: TextStyle(fontSize: 18),
+                  '© ${DateTime.now().year} Api',
+                  style: TextStyle(fontSize: 22),
                 ),
               ))),
     );
