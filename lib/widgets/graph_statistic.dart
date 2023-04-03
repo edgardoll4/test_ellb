@@ -1,14 +1,18 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-
 import 'package:flutter/material.dart';
-import 'package:test_ellb/interfaces/datos_estadisticas.dart';
 
-import 'flcahrt_pie_tst.dart';
+// import 'package:test_ellb/interfaces/datos_estadisticas.dart';
+// import 'flcahrt_pie_tst.dart';
 
-class Statistic extends StatelessWidget {
+class Statistic extends StatefulWidget {
   const Statistic({super.key});
 
+  @override
+  State<Statistic> createState() => _StatisticState();
+}
+
+class _StatisticState extends State<Statistic> {
   @override
   Widget build(BuildContext context) {
     DataStatistic datosStatistic = DataStatistic();
@@ -35,12 +39,28 @@ class Statistic extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image.network(
+                'https://cdn-icons-png.flaticon.com/512/3309/3309960.png',
+                width: 80,
+              ),
+              // Image.asset('assets/images/asd.png'),
               const Center(
                   child: Text('Estadisticas.\n',
                       style: TextStyle(
                           fontSize: 36,
                           fontStyle: FontStyle.italic,
-                          color: Color.fromARGB(255, 25, 0, 255)))),
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 25, 0, 255),
+                          shadows: [
+                            Shadow(
+                                color: Color.fromARGB(99, 62, 52, 99),
+                                blurRadius: 0.8,
+                                offset: Offset(2, 1)),
+                            Shadow(
+                                color: Color.fromARGB(99, 131, 131, 89),
+                                blurRadius: 0.5,
+                                offset: Offset(2, 1))
+                          ]))),
               Text(
                 'Asistir: $asistir. \n',
                 style: const TextStyle(
@@ -86,7 +106,7 @@ class Statistic extends StatelessWidget {
                             blurRadius: 0.7,
                             offset: Offset(2, 1))
                       ])),
-              Text('Sin Accion: $sinAccion\n',
+              Text('Sin Accion: $sinAccion.\n',
                   style: const TextStyle(
                       fontSize: 20,
                       color: Color.fromRGBO(0, 3, 101, 0.965),
@@ -103,6 +123,7 @@ class Statistic extends StatelessWidget {
               Text('Total de platillas de confirmacion: $total. \n',
                   style: const TextStyle(
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       color: Color.fromARGB(198, 1, 155, 9),
                       shadows: [
                         Shadow(
@@ -121,7 +142,13 @@ class Statistic extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
+              // Image.network(
+              //   'https://elturf.com/generales_imagenes/loading.gif',
+              //   width: 120,
+              // ),
+              Image.asset('assets/images/loading.gif'),
+
               Center(
                   child: CircularProgressIndicator(
                 color: Color.fromARGB(255, 10, 150, 15),
