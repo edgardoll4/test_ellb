@@ -23,11 +23,11 @@ class _HomePageState extends State<HomePage> {
     // final Statistic estadisticas;
 
     return Scaffold(
-      appBar: AppBar(
-        shadowColor: Color.fromARGB(255, 55, 255, 0),
-        backgroundColor: Color.fromARGB(255, 255, 55, 29),
-        title: Text('Mi aplicacion en Flutter'),
-      ),
+      // appBar: AppBar(
+      //   shadowColor: Color.fromARGB(255, 55, 255, 0),
+      //   backgroundColor: Color.fromARGB(255, 255, 55, 29),
+      //   title: Text('Mi aplicacion en Flutter'),
+      // ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -58,19 +58,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-          height: 50,
-          child: Container(
-              color: Colors.deepPurpleAccent,
-              child: Center(
-                child: Text(
-                  '© ${DateTime.now().year} ${DateTime.now().timeZoneName} Api',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ))),
+      // bottomNavigationBar: BottomAppBar(
+      //     height: 50,
+      //     child: Container(
+      //         color: Colors.deepPurpleAccent,
+      //         child: Center(
+      //           child: Text(
+      //             '© ${DateTime.now().year} ${DateTime.now().timeZoneName} Api',
+      //             style: TextStyle(
+      //               fontSize: 22,
+      //               fontWeight: FontWeight.bold,
+      //             ),
+      //           ),
+      //         ))),
     );
   }
 }

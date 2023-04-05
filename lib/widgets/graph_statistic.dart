@@ -1,9 +1,12 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 
 // import 'package:test_ellb/interfaces/datos_estadisticas.dart';
-// import 'flcahrt_pie_tst.dart';
+import '../resources/app_resources.dart';
+import 'flcahrt_pie_tst.dart';
+import 'indicator.dart';
 
 class Statistic extends StatefulWidget {
   const Statistic({super.key});
@@ -29,11 +32,46 @@ class _StatisticState extends State<Statistic> {
           //         snapshot.data['countAnular'] +
           //         snapshot.data['countAmbos']);
 
-          final asistir = datos[0].toString();
-          final anular = datos[1].toString();
-          final ambos = datos[2].toString();
-          final sinAccion = datos[3].toString();
-          final total = datos[4].toString();
+          final asistir = datos[0];
+          final anular = datos[1];
+          final ambos = datos[2];
+          final sinAccion = datos[3];
+          final total = datos[4];
+
+          List<PieChartSectionData> sectionsChart = [
+            PieChartSectionData(
+              value: double.parse(asistir.toStringAsFixed(2)),
+              titleStyle: TextStyle(fontWeight: FontWeight.bold),
+              title: "${_porcentaje(asistir, total, 2)} %",
+              showTitle: true,
+              color: Colors.orange,
+              radius: 100,
+            ),
+            PieChartSectionData(
+              value: double.parse(anular.toStringAsFixed(2)),
+              title: "${_porcentaje(anular, total, 2)} %",
+              titleStyle: TextStyle(fontWeight: FontWeight.bold),
+              showTitle: true,
+              color: Colors.blue,
+              radius: 100,
+            ),
+            PieChartSectionData(
+              titleStyle: TextStyle(fontWeight: FontWeight.bold),
+              value: double.parse(ambos.toStringAsFixed(2)),
+              title: "${_porcentaje(ambos, total, 2)} %",
+              showTitle: true,
+              color: Colors.red,
+              radius: 100,
+            ),
+            PieChartSectionData(
+              titleStyle: TextStyle(fontWeight: FontWeight.bold),
+              value: double.parse(sinAccion.toStringAsFixed(2)),
+              title: "${_porcentaje(sinAccion, total, 2)} %",
+              showTitle: true,
+              color: Colors.purple,
+              radius: 100,
+            ),
+          ];
 
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +82,9 @@ class _StatisticState extends State<Statistic> {
                 width: 80,
               ),
               // Image.asset('assets/images/asd.png'),
+              SizedBox(
+                height: 20,
+              ),
               const Center(
                   child: Text('Estadisticas.\n',
                       style: TextStyle(
@@ -62,7 +103,7 @@ class _StatisticState extends State<Statistic> {
                                 offset: Offset(2, 1))
                           ]))),
               Text(
-                'Asistir: $asistir. \n',
+                'Asistir: $asistir => ( ${double.parse((asistir / total * 100).toStringAsFixed(2)).toString()} %)\n',
                 style: const TextStyle(
                   fontSize: 20,
                   color: Color.fromRGBO(0, 3, 101, 0.965),
@@ -78,7 +119,8 @@ class _StatisticState extends State<Statistic> {
                   ],
                 ),
               ),
-              Text('Anular: $anular. \n',
+              Text(
+                  'Anular: $anular => ( ${double.parse((anular / total * 100).toStringAsFixed(2)).toString()} %)\n',
                   style: const TextStyle(
                       fontSize: 20,
                       color: Color.fromRGBO(0, 3, 101, 0.965),
@@ -92,7 +134,8 @@ class _StatisticState extends State<Statistic> {
                             blurRadius: 0.7,
                             offset: Offset(2, 1))
                       ])),
-              Text('Ambos: $ambos. \n',
+              Text(
+                  'Ambos: $ambos => ( ${double.parse((ambos / total * 100).toStringAsFixed(2)).toString()} %)\n',
                   style: const TextStyle(
                       fontSize: 20,
                       color: Color.fromRGBO(0, 3, 101, 0.965),
@@ -106,7 +149,8 @@ class _StatisticState extends State<Statistic> {
                             blurRadius: 0.7,
                             offset: Offset(2, 1))
                       ])),
-              Text('Sin Accion: $sinAccion.\n',
+              Text(
+                  'Sin Accion: $sinAccion => ( ${double.parse((sinAccion / total * 100).toStringAsFixed(2)).toString()} %)\n',
                   style: const TextStyle(
                       fontSize: 20,
                       color: Color.fromRGBO(0, 3, 101, 0.965),
@@ -135,6 +179,50 @@ class _StatisticState extends State<Statistic> {
                             blurRadius: 0.7,
                             offset: Offset(1, 1))
                       ])),
+
+              PieChartSample2(
+                datos: sectionsChart,
+              ),
+              Positioned(
+                  bottom: 20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: const <Widget>[
+                      Indicator(
+                        color: Colors.orange,
+                        text: 'Asistir',
+                        isSquare: true,
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Indicator(
+                        color: Colors.blue,
+                        text: 'Anular',
+                        isSquare: true,
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Indicator(
+                        color: Colors.red,
+                        text: 'Ambos',
+                        isSquare: true,
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Indicator(
+                        color: Colors.purple,
+                        text: 'Sin accion',
+                        isSquare: true,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      )
+                    ],
+                  )),
             ],
           );
         } else {
@@ -157,7 +245,11 @@ class _StatisticState extends State<Statistic> {
                 '\nLoading...',
                 style: TextStyle(
                     color: Color.fromARGB(200, 10, 200, 15), fontSize: 24),
-              )
+              ),
+              Image.network(
+                'https://cdn-icons-png.flaticon.com/512/3309/3309960.png',
+                width: 80,
+              ),
             ],
           );
         }
@@ -167,6 +259,10 @@ class _StatisticState extends State<Statistic> {
       //   color: Color.fromARGB(200, 10, 150, 15),
       // )),
     );
+  }
+
+  _porcentaje(a, b, c) {
+    return double.parse((a / b * 100).toStringAsFixed(c)).toString();
   }
 
   _getStatistic() async {

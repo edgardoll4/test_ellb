@@ -6,14 +6,13 @@ import 'package:flutter/material.dart';
 import '../resources/app_resources.dart';
 import 'indicator.dart';
 
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+// import 'package:http/http.dart' as http;
+// import 'dart:convert' as convert;
 
 class PieChartSample2 extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final datos;
-  PieChartSample2({super.key, this.datos});
-  // : assert(datos != null);
+  List<PieChartSectionData> datos;
+  PieChartSample2({super.key, required this.datos});
 
   @override
   State<StatefulWidget> createState() => PieChart2State(datos);
@@ -22,7 +21,7 @@ class PieChartSample2 extends StatefulWidget {
 class PieChart2State extends State {
   int touchedIndex = -1;
   // ignore: prefer_typing_uninitialized_variables
-  FutureBuilder datos;
+  final datos;
 
   PieChart2State(this.datos);
 
@@ -61,90 +60,54 @@ class PieChart2State extends State {
                   ),
                   sectionsSpace: 0,
                   centerSpaceRadius: 50,
-                  sections: sectionsChart,
+                  sections: datos,
                 ),
               ),
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const <Widget>[
-              Indicator(
-                color: AppColors.contentColorBlue,
-                text: 'Asistir',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColors.contentColorYellow,
-                text: 'Anular',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColors.contentColorPurple,
-                text: 'Ambos',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColors.contentColorGreen,
-                text: 'Sin accion',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
           const SizedBox(
-            width: 50,
-            height: 300,
+            width: 100,
+            height: 200,
           ),
         ],
       ),
     );
   }
 
-  List<PieChartSectionData> sectionsChart = [
-    PieChartSectionData(
-      value: 50,
-      title: "10%",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 34,
-      title: "45%",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 34,
-      title: "15%",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 43,
-      title: "5%",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-  ];
+  // List<PieChartSectionData> sectionsChart = [
+  //   PieChartSectionData(
+  //     value: 30,
+  //     title: "10%",
+  //     showTitle: true,
+  //     color: Colors.orange,
+  //     radius: 100,
+  //   ),
+  //   PieChartSectionData(
+  //     value: 34,
+  //     title: "45%",
+  //     showTitle: true,
+  //     color: Colors.blue,
+  //     radius: 100,
+  //   ),
+  //   PieChartSectionData(
+  //     value: 34,
+  //     title: "15%",
+  //     showTitle: true,
+  //     color: Colors.red,
+  //     radius: 100,
+  //   ),
+  //   PieChartSectionData(
+  //     value: 43,
+  //     title: "5%",
+  //     showTitle: true,
+  //     color: Colors.purple,
+  //     radius: 100,
+  //   ),
+  // ];
 
   // List<PieChartSectionData> showingSections(datos) {
+  //   final total = datos[4];
+  //   final arr = datos;
   //   return List.generate(4, (i) {
   //     final isTouched = i == touchedIndex;
   //     final fontSize = isTouched ? 25.0 : 16.0;
@@ -154,8 +117,8 @@ class PieChart2State extends State {
   //       case 0:
   //         return PieChartSectionData(
   //           color: AppColors.contentColorBlue,
-  //           value: 12,
-  //           title: '23%',
+  //           value: arr,
+  //           title: '${arr / total * 100}%',
   //           radius: radius,
   //           titleStyle: TextStyle(
   //             fontSize: fontSize,
@@ -167,8 +130,8 @@ class PieChart2State extends State {
   //       case 1:
   //         return PieChartSectionData(
   //           color: AppColors.contentColorYellow,
-  //           value: 12,
-  //           title: '30%',
+  //           value: arr[i],
+  //           title: '${arr[i] / total * 100}%',
   //           radius: radius,
   //           titleStyle: TextStyle(
   //             fontSize: fontSize,
@@ -180,8 +143,8 @@ class PieChart2State extends State {
   //       case 2:
   //         return PieChartSectionData(
   //           color: AppColors.contentColorPurple,
-  //           value: 12,
-  //           title: '15%',
+  //           value: arr[i],
+  //           title: '${arr[i] / total * 100}%',
   //           radius: radius,
   //           titleStyle: TextStyle(
   //             fontSize: fontSize,
@@ -193,8 +156,8 @@ class PieChart2State extends State {
   //       case 3:
   //         return PieChartSectionData(
   //           color: AppColors.contentColorGreen,
-  //           value: 12,
-  //           title: '15%',
+  //           value: arr[i],
+  //           title: '${arr[i] / total * 100}%',
   //           radius: radius,
   //           titleStyle: TextStyle(
   //             fontSize: fontSize,

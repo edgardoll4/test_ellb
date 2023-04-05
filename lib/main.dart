@@ -1,4 +1,4 @@
-// @dart=2.17
+// @dart=2.19
 import 'dart:async';
 import 'dart:developer' as dev;
 import 'package:flutter/foundation.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Test ELLB',
       theme: ThemeData(
         primarySwatch: Colors.blue,
