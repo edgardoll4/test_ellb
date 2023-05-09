@@ -268,15 +268,15 @@ class _StatisticState extends State<Statistic> {
   _getStatistic() async {
     // This example uses the Google Books API to search for books about http.
     // https://developers.google.com/books/docs/overview
-    final endDatetime = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final startDatetime = endDatetime - 604800000;
+    final endDatetime = DateTime.now().toUtc();
+    final startDatetime = endDatetime.add(const Duration(days: -7));
     final end = endDatetime.toString();
     final start = startDatetime.toString();
-    // print('end: ${end}');
-    // print('start: ${start}');
+    print('end: ${endDatetime}');
+    print('start: ${endDatetime}');
 
     final url = Uri.https(
-        'api-ws-prod.herokuapp.com',
+        'api-ws-prod.herokuapp.com/',
         '/api/chat/statistics-button-pressed/',
         {'end-time': end, 'start-time': start});
     print(url);
